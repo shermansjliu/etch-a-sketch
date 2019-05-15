@@ -24,7 +24,6 @@ gridSize.addEventListener('click', (e) => {
 
 numSquares = Math.ceil(numSquares);
 
-
 function createSquare () {
      let square = document.createElement('div');
 
@@ -46,16 +45,26 @@ function getRandomColor () {
 }
 
 
-    function darken(color) {
-        for (let i = 0; i < color.length; i++ ){
-
+function darken(color) {
+    let color_str = "";
+    let result = "";
+    for (let i = 0; i < color.length; i++ ){
+        if (parseInt(color[i]) || parseInt(color[i]) == 0 || color[i] == ',') {
+            color_str += color[i];
         }
     }
+    let color_list = color_str.split(',');
+
+    for (let i = 0; i < color_list.length; i++) {
+        result  += `${color_list[i] - 255 * 1/10},`;
+    }
+    result = result.substr(0, result.length - 1)
+    return `rgb(${result})`
+}
 
   function createCanvas () {
       let boxes = document.querySelectorAll('.square');
       numBoxes = boxes.length
-
 
       boxes.forEach((box) =>{
           canvas.removeChild(box)
@@ -80,9 +89,6 @@ function getRandomColor () {
 
     });
     let color = 'black';
-
-
-
     let squares = document.querySelectorAll('.square');
     squares.forEach((box) => {
         box.addEventListener('mouseenter', (e) => {
@@ -94,11 +100,10 @@ function getRandomColor () {
                     box.style.backgroundColor = 'rgb(0,0,0)';
                     break;
                 case 'gradual-black':
-                    alert(box.style.backgroundColor);
                     box.style.backgroundColor = darken(box.style.backgroundColor);
                     break;
             }
-            box.style.backgroundColor = `${color}`
+
         });
     });
 }
