@@ -24,12 +24,13 @@ gridSize.addEventListener('click', (e) => {
 
 numSquares = Math.ceil(numSquares);
 
+
 function createSquare () {
      let square = document.createElement('div');
 
      square.style.cssText = `height: ${square_hw}px;
                                             width: ${square_hw}px;
-                                            backgroundColor: white;
+                                            background-color: white;
                                             `
      square.classList.add('square');
      return square
@@ -56,17 +57,27 @@ function createSquare () {
             canvas.appendChild(newSquare)
         }
     }
+
     let color = 'black';
+
     let squares = document.querySelectorAll('.square');
     squares.forEach((box) => {
         box.addEventListener('mouseenter', (e) => {
-
             box.style.backgroundColor = `${color}`
         });
     });
-
 }
 
+
+
+let clearBtn = document.querySelector(".clear")
+clearBtn.addEventListener("click", () => {
+    let squares = document.querySelectorAll('.square')
+    squares.forEach((square) => {
+        square.style.backgroundColor = 'white';
+    })
+
+});
 
 
 createCanvas();
