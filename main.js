@@ -38,7 +38,6 @@ function getRandomColor () {
     let color = "";
     for (let i = 0; i < 3; i++){
         color += `${Math.floor(Math.random() * (256))},`
-
     }
     color = color.substr(0, color.length-1)
     return `rgb(${color})`;
@@ -86,7 +85,6 @@ function darken(color) {
     let selectMenu = document.querySelector('select');
     selectMenu.addEventListener('change', (e) => {
         color = e.target.options[e.target.selectedIndex].getAttribute('value');
-
     });
     let color = 'black';
     let squares = document.querySelectorAll('.square');
