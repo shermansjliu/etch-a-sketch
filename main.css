@@ -37,3 +37,13 @@ color: white;
 padding: 20px;
 background-color: black;
 }
+
+
+.custom-select select{
+    background: transparent;
+    background-color: black;
+    color: white;
+    padding: 3px;
+    border: none;
+    font-size: 1rem;
+}

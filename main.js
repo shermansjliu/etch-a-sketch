@@ -30,11 +30,27 @@ function createSquare () {
 
      square.style.cssText = `height: ${square_hw}px;
                                             width: ${square_hw}px;
-                                            background-color: white;
+                                            background-color: rgb(255,255,255);
                                             `
      square.classList.add('square');
      return square
 }
+function getRandomColor () {
+    let color = "";
+    for (let i = 0; i < 3; i++){
+        color += `${Math.floor(Math.random() * (256))},`
+
+    }
+    color = color.substr(0, color.length-1)
+    return `rgb(${color})`;
+}
+
+
+    function darken(color) {
+        for (let i = 0; i < color.length; i++ ){
+
+        }
+    }
 
   function createCanvas () {
       let boxes = document.querySelectorAll('.square');
@@ -58,11 +74,30 @@ function createSquare () {
         }
     }
 
+    let selectMenu = document.querySelector('select');
+    selectMenu.addEventListener('change', (e) => {
+        color = e.target.options[e.target.selectedIndex].getAttribute('value');
+
+    });
     let color = 'black';
+
+
 
     let squares = document.querySelectorAll('.square');
     squares.forEach((box) => {
         box.addEventListener('mouseenter', (e) => {
+            switch (color){
+                case 'random':
+                    box.style.backgroundColor = getRandomColor();
+                    break;
+                case 'black':
+                    box.style.backgroundColor = 'rgb(0,0,0)';
+                    break;
+                case 'gradual-black':
+                    alert(box.style.backgroundColor);
+                    box.style.backgroundColor = darken(box.style.backgroundColor);
+                    break;
+            }
             box.style.backgroundColor = `${color}`
         });
     });
@@ -70,11 +105,13 @@ function createSquare () {
 
 
 
+
+
 let clearBtn = document.querySelector(".clear")
 clearBtn.addEventListener("click", () => {
     let squares = document.querySelectorAll('.square')
     squares.forEach((square) => {
-        square.style.backgroundColor = 'white';
+        square.style.backgroundColor = 'rgb(255,255,255)';
     })
 
 });
