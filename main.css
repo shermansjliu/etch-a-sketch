@@ -1,11 +1,12 @@
 :root {
-    --main-bg-color: blue;
-    --main-text-color: black;
+    --main-bg-color: #B8DBD9;
+    --main-text-color: #2F4550;
 }
 
 body {
     margin: 0;
-
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
 }
 
 .title {
@@ -16,7 +17,7 @@ body {
 .canvas{
     display: grid;
     margin: auto;
-    border: 1px solid black;
+    border: 3px solid black;
     height: 600px;
     width: 600px;
 }
@@ -25,10 +26,14 @@ body {
     display: flex;
     text-align: center;
     justify-content: space-around;
+    margin-bottom: 30px;
 }
 
 .button {
 font-size: 2rem;
 border-radius: 100px;
 cursor: pointer;
+color: white;
+padding: 20px;
+background-color: black;
 }

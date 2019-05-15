@@ -1,7 +1,7 @@
 let canvas = document.querySelector('.canvas');
 let height_txt = getComputedStyle(canvas).height;
 let canvas_hw = "";
-console.log(canvas_hw);
+
 for(let i = 0; i < height_txt.length; i++){
     if (parseInt(height_txt[i]) || parseInt(height_txt[i]) == 0){
         canvas_hw += height_txt[i]
@@ -9,24 +9,20 @@ for(let i = 0; i < height_txt.length; i++){
 }
 
 canvas_hw = parseInt(canvas_hw)
-
-
-let squares = 16;
-let square_hw = canvas_hw / (squares);
-
-
+let numSquares = 16;
+let square_hw = canvas_hw / (numSquares);
 let gridSize = document.querySelector('.grid-size');
 
 gridSize.addEventListener('click', (e) => {
     let isNum = false
-
     do {
-        squares = prompt("Insert a number between 1 and 100 (both inclusive)");
+        numSquares = prompt("Insert a number between 1 and 100 (both inclusive)");
 
-    } while (!(typeof(squares) == num && sqaures <= 100 && sqaures >= 1 ))
+    } while (!(parseInt(numSquares) && numSquares <= 100 && numSquares >= 1 ))
+    createCanvas()
 });
 
-squares = Math.ceil(squares);
+numSquares = Math.ceil(numSquares);
 
 function createSquare () {
      let square = document.createElement('div');
@@ -40,20 +36,29 @@ function createSquare () {
 }
 
   function createCanvas () {
-      canvas.style.gridTemplateColumns = `repeat(${squares},  ${square_hw}px)`;
-      canvas.style.gridTemplateRows = `repeat(${squares}, ${square_hw}px)`;
+      let boxes = document.querySelectorAll('.square');
+      numBoxes = boxes.length
 
-       // = `grid-template-columns: repeat(1fr, ${squares});
-       //                                          grid-template-rows: repeat(1fr, ${squares});`
-    for (let i = 0; i < squares; i++) {
-        for (let j = 0; j < squares; j++){
+
+      boxes.forEach((box) =>{
+          canvas.removeChild(box)
+      })
+
+      square_hw =  canvas_hw / (numSquares);
+      canvas.style.gridTemplateColumns = `repeat(${numSquares},  ${square_hw}px)`;
+      canvas.style.gridTemplateRows = `repeat(${numSquares}, ${square_hw}px)`;
+
+       // = `grid-template-columns: repeat(1fr, ${numSquares});
+       //                                          grid-template-rows: repeat(1fr, ${numSquares});`
+    for (let i = 0; i < numSquares; i++) {
+        for (let j = 0; j < numSquares; j++){
             let newSquare = createSquare();
             canvas.appendChild(newSquare)
         }
     }
     let color = 'black';
-    let boxes = document.querySelectorAll('.square');
-    boxes.forEach((box) => {
+    let squares = document.querySelectorAll('.square');
+    squares.forEach((box) => {
         box.addEventListener('mouseenter', (e) => {
 
             box.style.backgroundColor = `${color}`
