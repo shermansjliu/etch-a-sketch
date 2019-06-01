@@ -6,4 +6,4 @@ An etch a sketch website that allows you to draw with your cursor.
 HTML, CSS, Javascript
 
 ### In browser solution
-https://github.com/shermansjliu/etch-a-sketch
+https://shermansjliu.github.io/etch-a-sketch/
